@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  {% include head.html %}
+
+  <body class="bg-light" style="padding-top: 84px;">
+
+    {% include learn-header.html %}
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+
+          {% include learn-menu.html %}
+
+          <div class="col-12 col-lg-6 col-xl-8 offset-lg-3 offset-xl-2 py-7 py-lg-9 px-lg-7">
+
+            <h1>{{ page.title }}</h1>
+
+            <p>
+              {{ page.intro }}
+            </p>
+
+            <hr>
+
+            <div class="main-docs-content">
+              {{ content }}
+            </div>
+          </div>
+
+          {% include learn-toc.html %}
+
+        </div>
+      </div>
+    </section>
+
+    {% include javascript.html %}
+
+  </body>
+
+</html>

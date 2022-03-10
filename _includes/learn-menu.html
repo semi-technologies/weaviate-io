@@ -1,0 +1,47 @@
+<div class="col-12 col-lg-3 col-xl-2 px-lg-0 border-bottom border-bottom-lg-0 border-end-lg border-gray-300 sidenav sidenav-start">
+    <div class="collapse d-lg-block" id="sidenavCollapse">
+        <div class="py-7 py-lg-9 px-lg-7">
+            <!-- IMPORTANT: NOTE THAT THE SUBMENU ORDER IS SET IN CONFIG.YML -->
+            {% assign sorted_documentation = site.pages | sort: 'menu-order' | group_by: 'solution' %}
+            {% for guides in sorted_documentation %}
+                {% if guides.name == page.solution %}
+                    <ul class="list mb-6">
+                        <li>
+                            <h6 class="text-uppercase fw-bold">
+                                {{ page.solution }}
+                            </h6>
+                        </li>
+                        <li class="list-item">
+                        <a href="{% if page.title == 'Introduction'%}../{% else %}../{% endif %}" 
+                            class="list-link {% if guide.title == page.title %}current{% endif %}">Introduction</a>
+                        </li>
+                    </ul>
+                    {% for menuItem in site.docs[guides.name] %}
+                        {% assign sorted_menus = site.pages | group_by: 'sub-menu' %}
+                        {% for menu in sorted_menus %}
+                            {% if menuItem.name == menu.name && guides.name == page.solution %}
+                                <h6 class="text-uppercase fw-bold">
+                                    <a href="/{{ guides.name }}/{{ menuItem.folder }}">{{ menu.name }}</a>
+                                </h6>
+                                <ul class="list mb-6">
+                                    {% assign sorted_sub_menus = site.pages | sort: 'menu-order' %}
+                                    {% for guide in sorted_sub_menus %}
+                                        {% if menu.name == guide.sub-menu %}
+                                            {% if page.solution == guide.solution %}
+                                                {% if guide.menu-order > 0 %}
+                                                    <li class="list-item">
+                                                    <a href="{{ guide.url }}" class="list-link">{{guide.title}}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            </div>
+    </div>  
+</div>

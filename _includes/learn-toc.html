@@ -1,0 +1,16 @@
+<div class="col-12 col-lg-3 col-xl-2 d-none d-lg-block px-lg-0 sidenav sidenav-end">
+  <div class="my-7 my-lg-9 px-lg-7 border-start-lg border-gray-300">
+    
+
+
+    <!-- TOC -->
+    {% if page.toc == true %}
+        <!-- Heading -->
+        <h6 class="text-uppercase fw-bold">
+          Table of Contents
+        </h6>
+        {{ content | toc_only }}
+    {% endif %}
+
+  </div>
+</div>

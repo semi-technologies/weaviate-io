@@ -544,3 +544,14 @@ docs:
               folder: contextionary
             - name: Weaviate Clients
               folder: weaviate-clients
+    learn:
+      - name: Vector search engines
+        folder: vector-search-engines
+      - name: Getting started with Weaviate
+        folder: getting-started
+      - name: Using Weaviate when it's running 
+        folder: using-weaviate
+      - name: Weaviate Modules
+        folder: weaviate-modules
+      - name: Working with neural search frameworks
+        folder: neural-search-frameworks
