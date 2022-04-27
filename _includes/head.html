@@ -24,8 +24,8 @@
 
     <!-- Title -->
     {% if page.layout == "layout-documentation" %}
-        <title>{{ page.title }} · Weaviate Documentation</title>
-        <meta property="og:title" content="{{ page.title }} · Weaviate Documentation" />
+        <title>{{ page.title }} · {{ site.title }}</title>
+        <meta property="og:title" content="{{ page.title }} · {{ site.title }}" />
     {% else %}
         <title>{{ page.title }}</title>
         <meta property="og:title" content="{{ page.title }}" />
@@ -44,9 +44,17 @@
     {% endif %}
 
     <!-- OG final -->
-    <meta property="og:site_name" content="Weaviate vector search engine" />
+    <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:type" content="website" />
+    <meta property="og:description" content="{{ site.description }}"/>
+    <meta property="og:url" content="{{ site.url }}"/>
+    <meta name="keywords" content="{{ site.keywords }}">
+    <meta property="twitter:title" content="{{ site.title }}"/>
+    <meta name="twitter:site" content="@{{ site.twitter.username }}"/>
+    <meta property="twitter:description" content="{{ site.mini_description }}"/>
+    <meta name="twitter:card" content="site.twitter.card">
 
     <!-- plausible -->
     {% include plausible.html %}
+    {% seo %}
 </head>

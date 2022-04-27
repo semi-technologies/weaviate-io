@@ -33,6 +33,8 @@ GEM
       jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (2.2.0)
       sassc (> 2.0.1, < 3.0)
+    jekyll-seo-tag (2.8.0)
+      jekyll (>= 3.8, < 5.0)
     jekyll-toc (0.17.1)
       jekyll (>= 3.9)
       nokogiri (~> 1.11)
@@ -80,6 +82,7 @@ PLATFORMS
 DEPENDENCIES
   jekyll (~> 4.2)
   jekyll-redirect-from
+  jekyll-seo-tag
   jekyll-toc (~> 0.17.1)
   webrick (~> 1.7)
 

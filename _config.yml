@@ -1,3 +1,23 @@
+name: Weaviate vector search engine
+
+# title of the website
+title: Weaviate Documentation
+
+# short description of the website
+description: Weaviate is an open source vector search engine that stores both objects and vectors, allowing for combining vector search with structured filtering with the fault-tolerance and scalability of a cloud-native database, all accessible through GraphQL, REST, and various language clients.
+
+mini_description: Weaviate is a cloud-native, modular, real-time vector search engine
+
+# website keywords for seo
+keywords: weaviate, vector, search, engine, cloud-native, modular
+
+twitter:
+  username: weaviate_io
+  card: summary
+
+website_repo: https://github.com/semi-technologies/weaviate-io
+url: https://weaviate.io/
+
 slack_signup_url: "https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw"
 weaviate_cli_version: 2.1.2
 python_client_version: 3.3.0
@@ -23,6 +43,7 @@ exclude:
 plugins:
     - jekyll-redirect-from
     - jekyll-toc
+    - jekyll-seo-tag
 whitelist:
     - jekyll-redirect-from
 toc:
