@@ -8,44 +8,53 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
 
 - Software Dependencies
   - [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
-  - Ruby Development Package (aka ruby-dev)
 
 - Installing Dependencies in **Ubuntu/Debian**
   ```bash
-  # update repositories & install basic build dependencies
-  sudo apt update && sudo apt install -y build-essential bash git rsync
+  # update
+  sudo apt update
+  
+  # install dependencies for installing ruby
+  sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
+  
+  # install rbenv[ruby version manager] from its official repo
+  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+  
+  # add ~/.rbenv/bin to your $PATH so that you can use the rbenv command line utility
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 
-  # update repositories & install rbenv
-  sudo apt update && sudo apt install rbenv ruby-build ruby_dev
-
-  # initialize rbenv
-  rbenv init
-
-  # updates ruby-build local packages
-  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-
-  # install ruby 2.7.5
-  rbenv install 2.7.5
-
-  # initialize rbenv
-  export PATH="$HOME/.rbenv/bin:$PATH"
-
-  # set the ruby version locally to 2.7.5
-  rbenv local 2.7.5
-  ```
-  - For installing RubyGems, read [docs](https://jekyllrb.com/docs/installation/ubuntu/)
-  ```bash
-  echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-  echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-  echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+  # make rbenv load automatically by adding it to .bashrc
+  echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+  
+  # apply changes to current shell session
   source ~/.bashrc
+  
+  # verify if rbenv is installed[Output - rbenv is a function]
+  type rbenv
+
+  # install ruby-build plugin from official github repo, adds the rbenv install command
+  git clone https://github.com/rbenv/ruby-build.git
+  
+  # Create this temporary environment variable and run the script[requires sudo]
+  PREFIX=/usr/local sudo ./ruby-build/install.sh
+  
+  # list out ruby versions available for install [choose any version > 2.5.0]
+  rbenv install -l
+  
+  # install a version from the list
+  rbenv install [VERSION_SELECTED]
+  # for example
+  rbenv install 2.7.6
+  
+  # set selected version as default
+  rbenv global [VERSION_SELECTED]
   ```
-
-- Installing Dependencies Windows
+- Installing Dependencies **Windows**
   - Please use [WSL](https://docs.microsoft.com/en-us/windows/wsl/)
-  - Read the [documentation](https://docs.microsoft.com/en-us/windows/wsl/install) on installing WSL on Windows.
+  - Read the [documentation](https://docs.microsoft.com/en-us/windows/wsl/install) on installing WSL on Windows
+  - Once the WSL is set up, use the same steps as above in ubuntu/debian to install dependencies
 
-- Installing Dependencies in macOS
+- Installing Dependencies in **MacOS**
   ```bash
   # install dependencies
   brew install rsync openssl rbenv ruby-build ruby_dev
@@ -59,27 +68,18 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
   # set the ruby version locally to 2.7.5
   rbenv local 2.7.5
   ```
-
-- Check if dependencies are installed correctly
+  
+- Check if dependencies are installed correctly (each should give a version as output)
   ```bash
   ruby -v
   gem -v
   ```
-
-- Finally, install Jekyll and Bundler:
-  ```bash
-  gem install jekyll bundler
-  ```
-
-- Check if dependencies are installed correctly
-  ```bash
-  jekyll -v
-  ```
+  
 ### Setting up the repository
   
 - To get the site up and running locally, follow the below steps:
 
-  **PS.:** You need to have a full Bash environment. If you're on Windows, please use WSL.
+  **Note** You need to have a full Bash environment. If you're on Windows, please use WSL.
 
 - Fork the repository
   You can get your own fork/copy of [weaviate.io](https://github.com/semi-technologies/weaviate-io) by using the `Fork` button
@@ -96,9 +96,16 @@ This repo contains the [Weaviate](https://weaviate.io) website, it's built using
   ```bash
   git remote add upstream git@github.com:semi-technologies/weaviate-io.git
   ```
+- Install Jekyll and Bundler
+  ```bash
+  gem install jekyll bundler
+  ```
+- Verify jekyll installation
+  ```bash
+  jekyll -v
+  ```
 - Perform the following commands to install dependencies and structure the website properly:
   ```
-  bundle config set --local path 'vendor/cache'
   bundle install
   ```
 - Build the site and make it available on your local server
